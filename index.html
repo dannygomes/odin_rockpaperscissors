@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function computerPlay(){
+            let randomNum = Math.random() * 3;
+            var play = ["Rock", "Paper", "Scissors"];
+            return play[Math.floor(randomNum)];
+        }
+
+        function round(playerSelection, computerSelection){
+            playerSelection = playerSelection.toUpperCase();
+            computerSelection = computerSelection.toUpperCase();
+
+            if(playerSelection === computerSelection){
+                console.log("Draw! Try again.");
+                return 0;
+            }
+
+            if(computerSelection === "SCISSORS" || playerSelection === "SCISSORS"){
+                if(computerSelection === "PAPER"){
+                    console.log(playerSelection + " beats " + computerSelection);
+                    return 1;
+                } else {
+                    console.log(computerSelection + " beats " + playerSelection);
+                    return -1;
+                }
+            }
+
+            if(playerSelection > computerSelection){
+                console.log(computerSelection + " beats " + playerSelection);
+                return -1;
+            } else {
+                console.log(playerSelection + " beats " + computerSelection);
+                return 1;
+            }
+        } 
+
+        function game(){
+            var playerWins = 0;
+            var computerWins = 0;
+
+            while(playerWins < 5 || computerWins < 5){
+                let computerSelection = computerPlay();
+                let playerSelection = prompt("Rock, Paper, Scissors");
+                let result = round(playerSelection, computerSelection);
+
+                if(result > 0){
+                    playerWins++;
+                } else if(result < 0){
+                    computerWins++;
+                }
+                alert("PLAYER: " + playerWins + " COMPUTER: " + computerWins);
+            }
+
+            if(playerWins == 5){
+                console.log("You win!");
+            } else {
+                console.log("You lose!");
+            }
+        }
+
+        game();
+    </script>
+</body>
+</html>
